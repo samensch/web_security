@@ -1,6 +1,8 @@
 XSS Prevention
 ==============
 
+
+
 XSS prevention rules
 --------------------
 
