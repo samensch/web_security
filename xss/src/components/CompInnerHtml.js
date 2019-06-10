@@ -5,14 +5,15 @@ function CompInnerHtml(props){
 
     return (
         <>
-            <h2> CompInnerHtml </h2>
-            <p>
+            <div>
+                <p>
                 Here we set <b>dangerouslySetInnerHtml</b> property on a div tag through which
-                we are going to inject the following text <br /> 
+                we are going to inject the following text:
+                </p>
                 <pre><code>
                 {dangerousText}
                 </code></pre>
-            </p>
+            </div>
             <div dangerouslySetInnerHTML={{"__html": dangerousText}} />
         </>
     )

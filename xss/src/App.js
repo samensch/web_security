@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CompInnerHtml from './components/CompInnerHtml'
+import CompInjectedProps from './components/CompInjectedProps'
 import CompInjectedAttr from './components/CompInjectedAttr'
 
 function Index(){
@@ -14,18 +15,30 @@ const attacks_arr = [
         description: "dangerouslySetInnerHTML",
     },
     {
+        name: CompInjectedProps,
+        id: 'compinjectedprops',
+        description: "Injecting Props",
+    },
+    {
         name: CompInjectedAttr,
         id: 'compinjectedattr',
-        description: "Injecting Props",
+        description: "Injecting Attributes",
     },
 ]
 
 function Attack({ match }){
 
-    if (match.params.id){
-        const attack = attacks_arr.find(({ id }) => id === match.params.id)
+    const attack = attacks_arr.find(({ id }) => id === match.params.id)
+    console.log(attack)
+    if (attack){
         const TagName = attack.name
-        return <TagName />
+        const TagDesc = attack.description
+        return (
+            <>
+            <h2>{TagDesc}</h2>
+            <TagName />
+            </>
+        )
     } else {
         return <div> Invalid request </div>
     }
