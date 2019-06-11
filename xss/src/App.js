@@ -35,84 +35,67 @@ const fixes_arr = [
     },
 ]
 
-function Attack({ match }){
+const nav_props = [
+    {
+        arr: attacks_arr,
+        name: 'Attacks', 
+    },
+    {
+        arr: fixes_arr,
+        name: 'Fixes',
+    },
+]
 
-    const attack = attacks_arr.find(({ id }) => id === match.params.id)
-    console.log(attack)
-    if (attack){
-        const TagName = attack.name
-        const TagDesc = attack.description
+class SubNav extends React.Component{
+
+    render(){
+        const {match, arr} = this.props
+        const nav_ele = arr.find(({ id }) => id === match.params.id)
+        if (nav_ele){
+            const TagName = nav_ele.name
+            const TagDesc = nav_ele.description
+            return (
+                <>
+                <h2>{TagDesc}</h2>
+                <TagName />
+                </>
+            )
+        } else {
+            return <div> Invalid request </div>
+        }
+    }
+
+}
+
+class Nav extends React.Component{
+    render(){
+        console.log(this.props)
+        const {match, name, arr} = this.props;
         return (
-            <>
-            <h2>{TagDesc}</h2>
-            <TagName />
-            </>
-        )
-    } else {
-        return <div> Invalid request </div>
+        <div>
+          <h2>{name}</h2>
+          <ol>
+            {
+                arr.map(({ name, id, description }) => (
+                  <li key={id}>
+                    <Link to={`${match.url}/${id}`}>{description}</Link>
+                  </li>
+                ))
+            }
+          </ol>
+
+          <Route 
+            path={`${match.path}/:id`}
+            render={(routeProps) => (
+                <SubNav {...routeProps} arr={arr}/> 
+            )}
+          />
+
+        </div>
+        );
     }
 }
 
-function Attacks({ match }) {
-  return (
-    <div>
-      <h2>Attacks</h2>
-      <ol>
-        {
-            attacks_arr.map(({ name, id, description }) => (
-              <li key={id}>
-                <Link to={`${match.url}/${id}`}>{description}</Link>
-              </li>
-            ))
-        }
-      </ol>
-
-
-      <Route path={`${match.path}/:id`} component={Attack}/>
-
-    </div>
-  );
-}
-
-
-function Fix({ match }){
-
-    const fix = fixes_arr.find(({ id }) => id === match.params.id)
-    console.log(fix)
-    if (fix){
-        const TagName = fix.name
-        const TagDesc = fix.description
-        return (
-            <>
-            <h2>{TagDesc}</h2>
-            <TagName />
-            </>
-        )
-    } else {
-        return <div> Invalid request </div>
-    }
-}
-
-function Fixes({ match }) {
-  return (
-    <div>
-      <h2>Fixes</h2>
-      <ol>
-        {
-            fixes_arr.map(({ name, id, description }) => (
-              <li key={id}>
-                <Link to={`${match.url}/${id}`}>{description}</Link>
-              </li>
-            ))
-        }
-      </ol>
-
-
-      <Route path={`${match.path}/:id`} component={Fix}/>
-
-    </div>
-  );
-}
 
 function App() {
   return (
@@ -128,8 +111,18 @@ function App() {
             </nav>
 
             <Route path="/" exact component={Index} />
-            <Route path="/attacks" component={Attacks} />
-            <Route path="/fixes" component={Fixes} />
+            <Route
+                path="/attacks"
+                render={(routeProps) => (
+                    <Nav {...routeProps} {...nav_props[0]}/>
+                )}
+            />
+            <Route
+                path="/fixes"
+                render={(routeProps) => (
+                    <Nav {...routeProps} {...nav_props[1]}/>
+                )}
+            />
 
         </div>
     </Router>
