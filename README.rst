@@ -24,7 +24,7 @@ Contributing
 This is the Sample structure in :code:`xss` folder.  
 
 .. code::
-
+    
     ➜ tree -I node_modules
     .
     ├── README.md
