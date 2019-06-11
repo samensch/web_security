@@ -142,6 +142,8 @@ to stop them from injecting harmful code.
 Resources & Interesting Reads
 -----------------------------
 
+https://github.com/facebook/react/issues/3473#issuecomment-90594748
+
 https://medium.com/dailyjs/exploiting-script-injection-flaws-in-reactjs-883fb1fe36c1
 
 https://medium.com/javascript-security/avoiding-xss-via-markdown-in-react-91665479900
