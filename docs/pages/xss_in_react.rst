@@ -148,4 +148,4 @@ https://medium.com/dailyjs/exploiting-script-injection-flaws-in-reactjs-883fb1fe
 
 https://medium.com/javascript-security/avoiding-xss-via-markdown-in-react-91665479900
 
-
+https://github.com/facebook/react/issues/14160

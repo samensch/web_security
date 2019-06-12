@@ -189,8 +189,36 @@ This header tells the browser to only load resources from the source page and ad
 javascript files from :code:`static.domain.tld`
 
 
+Security recommendations
+------------------------
+
+- Always sanitize the users' content that comes from forms.
+- Always prefer to serialize instead of JSON.stringify.
+- Use dangerouslySetInnerHTML only when absolutely necessary.
+- Do unit tests for all your components, and try to cover all the possible XSS
+  attacks that some user could do.
+- Always encrypt the passwords with sha1 and md5 (together), and also add a
+  salt value (for example, if the password is abc123, then your salt can be
+  encrypted like this: sha1(md5('$4lT3xt_abc123')).
+- If you use cookies to store sensitive information (personal information and
+  passwords mainly), you can save the cookie with Base64 to obfuscate the data.
+- Add some protection to your APIs (using security tokens) unless you need to have a public API.
+- Just because React stops XSS doesn’t mean that all code is safe. Be
+  distrustful of all libraries that work outside of React and avoid them if at
+  all possible.
+- Wrap all text passed in to dangerouslySetInnerHtml with an XSS filter and
+  create a Lint rule to enforce this in the future.
+
+
 Useful Links
 ------------
+
+https://edx.readthedocs.io/projects/edx-developer-guide/en/latest/preventing_xss/index.html
+
+Sanitizers Pageant
+******************
+
+https://www.npmtrends.com/dompurify-vs-sanitize-html-react-vs-xss-vs-bleach
 
 XSS cheatsheets
 ***************
@@ -215,3 +243,10 @@ Puzzles and Challenges
 **********************
 
 https://github.com/cure53/XSSChallengeWiki/wiki
+
+DOM Based
+*********
+
+https://github.com/WICG/trusted-types
+
+ 

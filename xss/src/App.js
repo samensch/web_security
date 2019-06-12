@@ -3,10 +3,21 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CompInnerHtml from './components/CompInnerHtml'
 import CompInjectedProps from './components/CompInjectedProps'
 import CompInjectedAttr from './components/CompInjectedAttr'
+import CompInputAttr from './components/CompInputAttr'
 import FixInnerHtml from './components/FixInnerHtml'
+import FixInjectedProps from './components/FixInjectedProps'
+import FixInjectedAttr from './components/FixInjectedAttr'
 
 function Index(){
-    return <h2> Home </h2>
+    return (
+        <>
+        <h2> Home </h2>
+        <p>
+            Here are some React based components divided into 2 parts, attacks and fixes.<br/>
+            Attacks have code which is vulnerable to xss and Fixes have code which is fixed.
+        </p>
+        </>
+    )
 }
 
 const attacks_arr = [
@@ -25,6 +36,11 @@ const attacks_arr = [
         id: 'compinjectedattr',
         description: "Injecting Attributes",
     },
+    {
+        name: CompInputAttr,
+        id: 'compinputattr',
+        description: "Injecting Attributes in Input",
+    },
 ]
 
 const fixes_arr = [
@@ -32,6 +48,16 @@ const fixes_arr = [
         name: FixInnerHtml,
         id: 'fixinnerhtml',
         description: 'dangerouslySetInnerHtml',
+    },
+    {
+        name: FixInjectedProps,
+        id: 'fixinjectedprops',
+        description: "Injecting Props",
+    },
+    {
+        name: FixInjectedAttr,
+        id: 'fixinjectedattr',
+        description: "Injecting Attributes in Input",
     },
 ]
 
