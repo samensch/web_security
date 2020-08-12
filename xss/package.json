@@ -9,7 +9,7 @@
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
-    "serialize-javascript": "^1.7.0",
+    "serialize-javascript": "^3.1.0",
     "universal-cookie": "^4.0.0"
   },
   "scripts": {
